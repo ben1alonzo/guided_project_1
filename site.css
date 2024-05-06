@@ -1,4 +1,7 @@
-body,
+body {
+  margin: auto;
+  max-width: 900px;
+}
 div,
 h1,
 h2,
@@ -14,19 +17,27 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   --dark1: black;
   --light1: white;
-  --dark2: darkblue;
-  --light2: lightblue;
-  background-color: var(--light1);
-  color: var(--dark1);
+  --dark2: #333; /* Dark gray for text */
+  --light2: #f0f0f0; /* Light gray for background */
+  --accent: rgb(88, 213, 255); /* Light blue accent color */
+  background-color: var(--dark1);
+  color: var(--light1);
 }
 
 button {
   background-color: var(--light2);
-  color: var(--dark2);
+  color: var(--dark1);
   font-weight: bold;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid var(--dark2);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s ease-out;
+}
+
+button:hover {
+  background-color: var(--accent);
+  color: var(--dark1);
+  transform: translateY(-5px); 
 }
 
 input {
@@ -36,9 +47,11 @@ input {
   font-size: 1.1em;
   line-height: 1.5em;
   border: none;
-  border-bottom: 2px solid var(--dark2);
+  border-bottom: 2px solid var(--accent);
   outline: none;
   margin: 5px;
+  color: var(--dark2);
+  background-color: var(--light2);
 }
 
 label {
@@ -62,10 +75,10 @@ label {
 #charactersList div {
   padding: 10px;
   margin: 10px;
-  border: 1px solid var(--dark2);
+  border: 1px solid var(--accent);
   border-radius: 5px;
-  color: var(--dark2);
-  background-color: var(--light2);
+  color: var(--accent);
+  background-color: var(--dark2);
   font-weight: bold;
 }
 
@@ -84,8 +97,8 @@ h1#name {
 #generalInfo p {
   padding: 20px;
   margin: 10px;
-  color: var(--dark2);
-  background-color: var(--light2);
+  color: var(--light1);
+  background-color: var(--dark2);
 }
 
 #generalInfo span {
@@ -102,22 +115,37 @@ section#films {
 section#planets ul,
 section#characters ul,
 section#films ul {
-  list-style-type: none;
   padding: 0;
+}
+
+section#planets ul li,
+section#characters ul li,
+section#films ul li {
+  display: inline-block;
 }
 
 section#planets a,
 section#characters a,
-section#films a {
+section#films a,
+#generalInfo button {
   display: inline-block;
   text-decoration: none;
   font-size: 1.1em;
-
   background-color: var(--light2);
-  color: var(--dark2);
+  color: var(--dark1);
   font-weight: bold;
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
   border: 1px solid var(--dark2);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s ease-out;
+}
+
+section#planets a:hover,
+section#characters a:hover,
+section#films a:hover,
+#generalInfo button:hover {
+  background-color: var(--accent);
+  color: var(--dark1);
+  transform: translateY(-5px); 
 }
