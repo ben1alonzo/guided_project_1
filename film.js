@@ -44,6 +44,9 @@ async function fetchFilm(id) {
 async function fetchPlanets(film) {
   const url = `${baseUrl}/films/${film?.id}/planets`;
   const planet = await fetch(url).then((res) => res.json());
+  localStorage.setItem("Planets", JSON.stringify(planet));
+  console.log("Data fetched and stored in local storage:", planet);
+
   return planet;
 }
 
@@ -54,6 +57,7 @@ async function fetchCharacters(film) {
 }
 
 const renderFilm = (film) => {
+  const savedData = JSON.parse(localStorage.getItem("Planets"));
   document.title = `SWAPI - ${film?.title}`; // Just to make the browser tab say their name
   nameH1.textContent = film?.title;
   producer.textContent = film?.producer;
@@ -61,11 +65,27 @@ const renderFilm = (film) => {
   releaseDate.textContent = film?.release_date;
   episodeID.textContent = film?.episode_id;
   openingCrawl.textContent = film?.opening_crawl;
-  const planetLis = film?.planets?.map(
-    (planets) =>
-      `<li><a href="/planet.html?id=${planets.id}">${planets.name}</li>`
-  );
-  planetUl.innerHTML = planetLis.join("");
+  if (savedData) {
+    //   const planetLis = film?.planets?.map(
+    //   (planets) =>
+    //     `<li><a href="/planet.html?id=${planets.id}">${planets.name}</li>`
+    // );
+    // planetUl.innerHTML = planetLis.join("");
+    // const ul = document.createElement("ul");
+
+    savedData.forEach((item) => {
+      const planetLis = film?.planets?.map(
+        (planets) =>
+          `<li><a href="/planet.html?id=${planets.id}">${planets.name}</li>`
+      );
+      planetUl.innerHTML = planetLis.join("");
+    });
+
+    // listContainer.appendChild(ul);
+  } else {
+    planetLis.textContent = "No data found";
+  }
+  // }
 
   const characterLis = film?.characters?.map(
     (characters) =>
