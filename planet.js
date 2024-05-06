@@ -40,7 +40,7 @@ async function getPlanet(id) {
   renderPlanet(planet);
 }
 async function fetchPlanet(id) {
-  let planetUrl = `${baseUrl}/planet/${id}`;
+  let planetUrl = `${baseUrl}/planets/${id}`;
   return await fetch(planetUrl).then((res) => res.json());
 }
 
